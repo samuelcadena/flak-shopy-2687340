@@ -6,13 +6,18 @@ from .config import Config
 from flask_sqlalchemy import SQLAlchemy
 #Dependecias de migraciones
 from flask_migrate import Migrate
+from .mi_blueprint import mi_blueprint
+from app.products import products
 
 #crear el objeto Flask
 app = Flask(__name__)
 #configuracion del objeto flask
 app.config.from_object(Config)
 
-DeprecationWarning
+#vincular blueprints del proyecto
+app.register_blueprint(mi_blueprint)
+app.register_blueprint(products)
+
 
 #crear el objeto de modelo:
 db = SQLAlchemy(app)
